@@ -1,23 +1,28 @@
 {
-  //           "presets": [
-  //             [
-  //               "@babel/preset-env",
-  //               targets: {
-  //                 chrome: "67"
-  // ，            },
-  //             {"useBuiltIns": "usage"}] // 动态打包引入es6的新加的函数或者对象
-  //           ]、
+            "presets": [
+              [
+                "@babel/preset-env",
+                {
+                  "targets": {"chrome": "67"},
+                  "corejs": 2, 
+                  "useBuiltIns": "usage" // 动态打包引入es6的新加的函数或者对象
+                }
+              ],
+              [
+                "@babel/preset-react"
+              ]
+            ]
 
   // 库项目代码 （闭包形式注入）书写类库不污染全局变量
-  "plugins": [
-    [
-      "@babel/plugin-transform-runtime",
-      {
-        "corejs": 2,
-        "helpers": true,
-        "regenerator": true,
-        "useESModules": false
-      }
-    ]
-  ]
+//   "plugins": [
+//     [
+//       "@babel/plugin-transform-runtime",
+//       {
+//         "corejs": 2,
+//         "helpers": true,
+//         "regenerator": true,
+//         "useESModules": false
+//       }
+//     ]
+//   ]
 }

@@ -4,19 +4,11 @@ const {CleanWebpackPlugin}  = require('clean-webpack-plugin')
 const webpack = require('webpack')
 
 module.exports = {
-  mode: 'development',
-  devtool: 'eval-source-map',
   entry: {
-    main: './src/index.js',
+    //入口文件
+    main: './src/4rd_index.js'
   },
-  devServer: {
-      contentBase: path.join(__dirname, 'dist'),
-      open: true,
-      port: 8080,
-      hot: true,
-      hotOnly: true
-  },
-  module: {
+  module: { // 文件类型模块如何打包规则
     rules: [
       {
         test: /\.(jpg|png|jpeg)$/,
@@ -60,12 +52,38 @@ module.exports = {
       template: './src/index.html',
       minify: true
     }), 
-    new CleanWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new CleanWebpackPlugin({
+      cleanAfterEveryBuildPatterns: ['dist'],
+      dangerouslyAllowCleanPatternsOutsideProject: path.resolve(__dirname, '../')
+    })
   ],
   output: {
-    publicPath: '/',
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, '../dist')
+  },
+  optimization: {
+    usedExports: true,
+    splitChunks: {
+      chunks: 'all',  // initial、 async
+      minSize: 30000,
+      maxSize: 0,
+      minChunks: 1, // 引入使用次数
+      maxAsyncRequests: 5, //整个项目文件分割
+      maxInitialRequests: 3, // 入口文件分割
+      automaticNameDelimiter: '~', // 文件中间连接符
+      automaticNameMaxLength: 30,
+      name: true,
+      cacheGroups: { // 打包完分析，相同模块的可存放为一组
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10
+        },
+        default: {
+          priority: -20,
+          reuseExistingChunk: true,
+          filename: 'common.js'
+        }
+      }
+    }
   }
 }

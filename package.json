@@ -1,12 +1,14 @@
 {
   "name": "webpack-leanring",
+  "sideEffects": ["*.scss", "*.css"],
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev-build": "webpack --profile --json > stats.json --config ./build/webpack.dev.js",
+    "dev": "webpack-dev-server --config ./build/webpack.dev.js",
+    "build": "webpack --config ./build/webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "start": "webpack-dev-server",
     "server": "node server.js"
   },
   "author": "",
@@ -15,6 +17,7 @@
     "@babel/core": "^7.6.4",
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
     "autoprefixer": "^9.7.0",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
@@ -22,19 +25,26 @@
     "express": "^4.17.1",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.13.0",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "url-loader": "^2.2.0",
     "webpack": "^4.41.2",
+    "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.3.9",
     "webpack-dev-middleware": "^3.7.2",
-    "webpack-dev-server": "^3.9.0"
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
     "@babel/runtime": "^7.6.3",
-    "@babel/runtime-corejs2": "^7.6.3"
+    "@babel/runtime-corejs2": "^7.6.3",
+    "jquery": "^3.4.1",
+    "lodash": "^4.17.15",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
   }
 }

@@ -1,7 +1,7 @@
 const express = require('express');
 const webpack = require('webpack');
 const WebpackDevMiddleware = require('webpack-dev-middleware');
-const config = require('./webpack.config');
+const config = require('./build/webpack.dev');
 const compiler = webpack(config); //返回编译器
 
 const app = express();

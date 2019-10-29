@@ -1,22 +1,32 @@
-import createHeader from './component/header/index.js';
-import wofl from './images/20131204184148_hhXUT.jpeg';
-import createImg from './createImg.js';
-import Counter from './counter';
-import Numbers from './Number';
-import style from './_index.scss';
-import "@babel/polyfill";
-import './index.scss'
+// import createHeader from './component/header/index.js';
+// import wofl from './images/20131204184148_hhXUT.jpeg';
+// import createImg from './createImg.js';
+// import Counter from './counter';
+// import Numbers from './Number';
+// import style from './_index.scss';
+// import React, {Component} from 'react';
+// import ReactDom from 'react-dom';
+// import './index.scss'
+
+// class App extends Component {
+//     render() {
+//         return <div>Hello World</div>
+//     }
+// }
+// console.log( document.getElementById('body'))
+// console.log(ReactDom);
+// ReactDom.render(<App />, document.getElementById('body'));
 
 
 
-const arr = [
-    new Promise(()=> {}),
-    new Promise(()=> {})
-];
+// const arr = [
+//     new Promise(()=> {}),
+//     new Promise(()=> {})
+// ];
 
-arr.map((item)=>{
-    console.log('item', item);
-})
+// arr.map((item)=>{
+//     console.log('item', item);
+// })
 
 // Counter();
 // Numbers();
