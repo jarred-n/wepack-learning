@@ -1,15 +1,20 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin}  = require('clean-webpack-plugin')
+const webpack = require('webpack')
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   devtool: 'eval-source-map',
   entry: {
     main: './src/index.js',
   },
   devServer: {
-      contentBase: path.join(__dirname, 'dist')
+      contentBase: path.join(__dirname, 'dist'),
+      open: true,
+      port: 8080,
+      hot: true,
+      hotOnly: true
   },
   module: {
     rules: [
@@ -42,13 +47,22 @@ module.exports = {
           'sass-loader',
           'postcss-loader'
         ]
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
       }
     ]
   },  
-  plugins: [new HtmlWebpackPlugin({
+  plugins: [
+    new HtmlWebpackPlugin({
       template: './src/index.html',
       minify: true
-  }), new CleanWebpackPlugin()],
+    }), 
+    new CleanWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin()
+  ],
   output: {
     publicPath: '/',
     filename: '[name].js',
